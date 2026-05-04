@@ -1,193 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Introducción a Pokémon VGC</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Competitivo | Introduccion</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-
-  <!-- ═══════════════════════════════════
-       NAVEGACIÓN
-  ═══════════════════════════════════ -->
-  <nav>
-    <div class="nav-inner">
-      <a class="nav-logo" href="#">
-        <span class="pokeball-icon">
-          <span class="pb-half pb-top"></span>
-          <span class="pb-half pb-bot"></span>
-          <span class="pb-center"></span>
-        </span>
-        VGC
-      </a>
-      <ul class="nav-links">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#que-es">¿Qué es?</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ═══════════════════════════════════
-       HERO — Título principal
-  ═══════════════════════════════════ -->
-  <section class="hero" id="hero">
-
-    <!-- Burbujas decorativas de fondo -->
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
-    <div class="bubble b3"></div>
-    <div class="bubble b4"></div>
-    <div class="bubble b5"></div>
-
-    <!-- Pokéballs flotantes decorativas -->
-    <div class="deco-ball db1">
-      <div class="pb-half pb-top"></div>
-      <div class="pb-half pb-bot"></div>
-      <div class="pb-center"></div>
-    </div>
-    <div class="deco-ball db2">
-      <div class="pb-half pb-top" style="background:var(--great)"></div>
-      <div class="pb-half pb-bot"></div>
-      <div class="pb-center"></div>
-    </div>
-    <div class="deco-ball db3">
-      <div class="pb-half pb-top" style="background:var(--ultra)"></div>
-      <div class="pb-half pb-bot"></div>
-      <div class="pb-center"></div>
+    <div class="arena-backdrop" aria-hidden="true">
+        <div class="pokeball-bg"></div>
     </div>
 
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="tag-pill">Guía para principiantes</span>
-      </div>
-      <h1 class="hero-title">
-        <span class="line-1">Introducción a</span>
-        <span class="line-2">Pokémon</span>
-        <span class="line-3">VGC</span>
-      </h1>
-      <p class="hero-sub">
-        Todo lo que necesitas saber para adentrarte en el<br>
-        formato competitivo oficial de The Pokémon Company.
-      </p>
-      <a class="hero-cta" href="#que-es">
-        Empezar a leer
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      </a>
+    <div id="curtain-wrapper">
+        <div class="curtain left-curtain"></div>
+        <div class="curtain right-curtain"></div>
+        <div class="curtain-text">
+            <h1>ENTRANDO AL ESTADIO</h1>
+            <p>Haz scroll para empezar el combate</p>
+            <div class="scroll-arrow">&#8595;</div>
+        </div>
     </div>
 
-    
-  </section>
+    <main class="content-wrapper">
+        <section class="hero-stage">
+            <p class="eyebrow">GUIA RAPIDA DE COMBATE</p>
+            <h2 class="title-main">Conceptos Basicos</h2>
 
-  <!-- ═══════════════════════════════════
-       SECCIÓN — ¿Qué es Pokémon VGC?
-  ═══════════════════════════════════ -->
-  <section class="que-es" id="que-es">
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-tag">REGLA 01</span>
+                    <h3>Formato VGC</h3>
+                    <p>Combates dobles oficiales. Equipos de 6, eliges 4 para pelear.</p>
+                </div>
+                <div class="info-card">
+                    <span class="card-tag">REGLA 02</span>
+                    <h3>Nivel 50</h3>
+                    <p>Todos los Pokemon se equilibran automaticamente a este nivel.</p>
+                </div>
+                <div class="info-card">
+                    <span class="card-tag">REGLA 03</span>
+                    <h3>Tiempo</h3>
+                    <p>45 segundos por turno. La paralisis mental no esta permitida.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="container">
+        <section class="roles-section" aria-labelledby="roles-title">
+            <p class="eyebrow">LECTURA DE EQUIPO</p>
+            <h2 class="section-title" id="roles-title">Los Roles Mas Importantes</h2>
 
-      <!-- Cabecera de sección -->
-      <div class="section-header reveal">
-        <span class="section-number">01</span>
-        <div class="section-title-wrap">
-          <h2 class="section-title">¿Qué es Pokémon VGC?</h2>
-          <div class="section-line"></div>
+            <div class="roles-grid">
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="lead"
+                    data-role-title="Lead"
+                    data-role-description="Estos Pokemon se encargan de dirigir el combate ofreciendo utilidad o presión al rival desde el primer turno, ya sea con habilidades que impidan acciones del rival, o con movimientos que ofrezcan ventaja rapidamente."
+                    data-role-modal-image-secondary="./img/talonflame.png"
+                    data-role-modal-image-secondary-alt="Segunda imagen del rol lead"
+                >
+                    <span class="role-name">Lead</span>
+                    <img src="./img/incineroar.png" alt="Pokemon del rol lead" class="role-image">
+                </button>
+
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="support"
+                    data-role-title="Support"
+                    data-role-description="Los Pokemon de soporte pueden tanto redirigir ataques del rival a ellos mismos como dar apoyo contiuado con movimientos como viento hielo o añadiendo efectos de reducción de daño como pantalla de luz o reflejo, además de ser un problema al que el rival debe prestar atención."
+                    data-role-modal-image-secondary="./img/milotic.png"
+                    data-role-modal-image-secondary-alt="Segunda imagen del rol support"
+                >
+                    <span class="role-name">Support</span>
+                    <img src="./img/whimsicott.png" alt="Pokemon del rol support" class="role-image">
+                </button>
+
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="sweeper"
+                    data-role-title="Sweeper"
+                    data-role-description="Los mas fuertes, ya sea tras mejorar sus estadísticas o megaevolucionar, estos Pokemon se encargan de arrasar con el equipo del rival causando el mayor daño posible en el menor tiempo."
+                    data-role-modal-image-secondary="./img/miraidon.png"
+                    data-role-modal-image-secondary-alt="Segunda imagen del rol sweeper"
+                >
+                    <span class="role-name">Sweeper</span>
+                    <img src="./img/sweeper.png" alt="Pokemon del rol sweeper" class="role-image">
+                </button>
+
+                <button
+                    type="button"
+                    class="role-card"
+                    data-role="pivot"
+                    data-role-title="Pivot"
+                    data-role-description="Estos Pokemon se encargan de irrumpir el ritmo del rival, entrando en el combate e interponiendose en turnos clave con habilidades como intimidación o aplicando estados, para luego salir con movimientos como ida y vuelta o voltiocambio."
+                    data-role-modal-image-secondary="./img/landorus.png"
+                    data-role-modal-image-secondary-alt="Segunda imagen del rol pivot"
+                >
+                    <span class="role-name">Pivot</span>
+                    <img src="./img/rotom.png" alt="Pokemon del rol pivot" class="role-image">
+                </button>
+            </div>
+        </section>
+
+        <section class="archetypes-section" aria-labelledby="archetypes-title">
+            <p class="eyebrow">CONSTRUCCION DE EQUIPO</p>
+            <h2 class="section-title" id="archetypes-title">Arquetipos Mas Comunes</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+
+            <div class="archetypes-carousel">
+                <button type="button" class="carousel-button carousel-button-prev" id="archetypes-prev" aria-label="Arquetipo anterior">‹</button>
+
+                <div class="archetypes-viewport">
+                    <div class="archetypes-track" id="archetypes-track">
+                        <article class="archetype-card">
+                            <span class="card-tag">01</span>
+                            <h3>Trick Room</h3>
+                            <div class="archetype-layout">
+                                <img src="./img/ESPACIO-RARO.png" alt="Imagen representativa de Trick Room" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="./img/farigiraf.png" alt="Pokemon 1 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/hatterenne.png" alt="Pokemon 2 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/indeede.png" alt="Pokemon 3 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/gallade.png" alt="Pokemon 4 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/glastrier.png" alt="Pokemon 5 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/torkoal.png" alt="Pokemon 6 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/camerupt.png" alt="Pokemon 7 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/porygon2.png" alt="Pokemon 8 de Trick Room" class="archetype-team-image">
+                                    <img src="./img/dusclops.png" alt="Pokemon 9 de Trick Room" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar equipos lentos que invierten el orden de velocidad.</p>
+                        </article>
+
+                        <article class="archetype-card">
+                            <span class="card-tag">02</span>
+                            <h3>Balance</h3>
+                            <div class="archetype-layout">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Imagen representativa de Balance" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 1 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 2 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 3 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 4 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 5 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 6 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 7 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 8 de Balance" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 9 de Balance" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar equipos equilibrados entre presion, soporte y control.</p>
+                        </article>
+
+                        <article class="archetype-card">
+                            <span class="card-tag">03</span>
+                            <h3>Hyper Offense</h3>
+                            <div class="archetype-layout">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Imagen representativa de Hyper Offense" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 1 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 2 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 3 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 4 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 5 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 6 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 7 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 8 de Hyper Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 9 de Hyper Offense" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar equipos agresivos que buscan snowball y presion inmediata.</p>
+                        </article>
+
+                        <article class="archetype-card">
+                            <span class="card-tag">04</span>
+                            <h3>Stall</h3>
+                            <div class="archetype-layout">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Imagen representativa de Stall" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 1 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 2 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 3 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 4 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 5 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 6 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 7 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 8 de Stall" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 9 de Stall" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar equipos defensivos que ganan por desgaste y control.</p>
+                        </article>
+
+                        <article class="archetype-card">
+                            <span class="card-tag">05</span>
+                            <h3>Weather</h3>
+                            <div class="archetype-layout">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Imagen representativa de Weather" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 1 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 2 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 3 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 4 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 5 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 6 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 7 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 8 de Weather" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 9 de Weather" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar composiciones que giran alrededor de clima y abuso de velocidad.</p>
+                        </article>
+
+                        <article class="archetype-card">
+                            <span class="card-tag">06</span>
+                            <h3>Bulky Offense</h3>
+                            <div class="archetype-layout">
+                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Imagen representativa de Bulky Offense" class="archetype-feature-image">
+                                <div class="archetype-team-grid">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 1 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 2 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 3 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 4 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 5 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 6 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 7 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 8 de Bulky Offense" class="archetype-team-image">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="Pokemon 9 de Bulky Offense" class="archetype-team-image">
+                                </div>
+                            </div>
+                            <p>Espacio reservado para explicar equipos resistentes que mantienen una amenaza ofensiva constante.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <button type="button" class="carousel-button carousel-button-next" id="archetypes-next" aria-label="Siguiente arquetipo">›</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="role-modal" id="role-modal" aria-hidden="true">
+        <div class="role-modal-panel" role="dialog" aria-modal="true" aria-labelledby="role-modal-title">
+            <button type="button" class="role-modal-close" id="role-modal-close" aria-label="Cerrar">×</button>
+            <p class="card-tag">ROL</p>
+            <div class="role-modal-media">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" class="role-modal-image" id="role-modal-image">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" class="role-modal-image" id="role-modal-image-secondary">
+            </div>
+            <p class="role-modal-copy" id="role-modal-copy">Texto descriptivo del rol.</p>
         </div>
-      </div>
-
-      <!-- Bloque intro grande -->
-      <div class="intro-block reveal">
-        <p class="intro-text">
-          <strong>VGC</strong> son las siglas de <em>Video Game Championships</em>, el torneo oficial de videojuegos Pokémon organizado por <strong>The Pokémon Company International</strong>. Es el circuito competitivo más importante del mundo y culmina cada año con el <em>Pokémon World Championships</em>.
-        </p>
-      </div>
-
-      <!-- Grid de tarjetas explicativas -->
-      <div class="cards-grid">
-
-        <div class="info-card card-red reveal">
-          <div class="card-icon"></div>
-          <h3>El formato oficial</h3>
-          <p>A diferencia de formatos como Smogon —creados por la comunidad— VGC es el formato avalado directamente por The Pokémon Company. Sus reglas son las únicas válidas en torneos regionales, nacionales y mundiales.</p>
-        </div>
-
-        <div class="info-card card-blue reveal">
-          <div class="card-icon"></div>
-          <h3>Batallas en dobles</h3>
-          <p>VGC se juega exclusivamente en formato de <strong>dobles</strong>: ambos jugadores envían al campo <strong>dos Pokémon a la vez</strong> de un equipo de seis. Esto cambia radicalmente la estrategia respecto a los singles, haciendo que la sinergia entre compañeros sea fundamental.</p>
-        </div>
-
-        <div class="info-card card-yellow reveal">
-          <div class="card-icon"></div>
-          <h3>Series y restricciones</h3>
-          <p>Cada año, The Pokémon Company establece una <strong>serie</strong> con reglas específicas: qué juego se usa, qué Pokémon están permitidos, si los legendarios están habilitados y cuántos pueden llevarse en el equipo.</p>
-        </div>
-
-        <div class="info-card card-green reveal">
-          <div class="card-icon"></div>
-          <h3>Circuito mundial</h3>
-          <p>El circuito VGC comienza con torneos locales llamados <strong>Regionals</strong>, pasa por los <strong>Internationals</strong> continentales y culmina en los <strong>World Championships</strong>, donde los mejores jugadores del planeta compiten por el título.</p>
-        </div>
-
-      </div>
-
-      <!-- Bloque de texto largo editorial -->
-      <div class="editorial-block reveal">
-        <div class="editorial-label">En profundidad</div>
-        <div class="editorial-body">
-          <div class="editorial-col">
-            <h3>Un meta vivo y cambiante</h3>
-            <p>Una de las características más apasionantes del VGC es que su <em>meta</em> —el conjunto de estrategias, Pokémon y movimientos más eficaces en un momento dado— evoluciona constantemente. Cada resultado de torneo, cada nueva serie y cada descubrimiento de la comunidad redefine qué equipos son los más competitivos.</p>
-            <p>Esto significa que aunque domines el juego hoy, tendrás que seguir aprendiendo mañana. El VGC premia la adaptación, el análisis y el estudio constante tanto como la habilidad en batalla.</p>
-          </div>
-          <div class="editorial-col">
-            <h3>Más que ganar o perder</h3>
-            <p>Para muchos jugadores, el VGC es ante todo una comunidad. Los torneos presenciales son encuentros sociales donde conoces a gente que comparte tu misma pasión. La colaboración —compartir análisis, estrategias y equipos— es parte esencial de la cultura.</p>
-            <p>Hay jugadores de todas las edades, desde niños de diez años que compiten en la categoría <em>Junior</em> hasta adultos con años de trayectoria en la categoría <em>Masters</em>. El VGC es, en esencia, un deporte para todos.</p>
-          </div>
-        </div>
-      </div>
-
-      
-
-      <!-- Stats decorativos -->
-      <div class="stats-row reveal">
-        <div class="stat-item">
-          <span class="stat-num">2</span>
-          <span class="stat-label">Pokémon en campo<br>simultáneamente</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num">6</span>
-          <span class="stat-label">Pokémon por<br>equipo</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num">4</span>
-          <span class="stat-label">Movimientos por<br>Pokémon</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num">45&thinsp;s</span>
-          <span class="stat-label">Para elegir<br>movimiento</span>
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <!-- ═══════════════════════════════════
-       FOOTER provisional
-  ═══════════════════════════════════ -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>Introducción a Pokémon VGC · Guía en construcción</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
