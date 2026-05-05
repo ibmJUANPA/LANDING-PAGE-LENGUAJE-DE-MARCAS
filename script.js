@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const archetypesTrack = document.getElementById('archetypes-track');
     const archetypesPrev = document.getElementById('archetypes-prev');
     const archetypesNext = document.getElementById('archetypes-next');
+    const pokemonSearchForm = document.getElementById('pokemon-search-form');
+    const pokemonSearchInput = document.getElementById('pokemon-name');
+    const pokemonSearchFeedback = document.getElementById('pokemon-search-feedback');
+    const pokemonResultCard = document.getElementById('pokemon-result-card');
+    const pokemonResultImage = document.getElementById('pokemon-result-image');
+    const pokemonResultId = document.getElementById('pokemon-result-id');
+    const pokemonResultName = document.getElementById('pokemon-result-name');
+    const pokemonResultTypes = document.getElementById('pokemon-result-types');
+    const pokemonResultAbilities = document.getElementById('pokemon-result-abilities');
+    const pokemonStatsGrid = document.getElementById('pokemon-stats-grid');
     let closeModalTimer = null;
     let curtainProgress = 0;
 
@@ -247,5 +257,133 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         syncArchetypesCarousel();
+    }
+
+    if (
+        pokemonSearchForm &&
+        pokemonSearchInput &&
+        pokemonSearchFeedback &&
+        pokemonResultCard &&
+        pokemonResultImage &&
+        pokemonResultId &&
+        pokemonResultName &&
+        pokemonResultTypes &&
+        pokemonResultAbilities &&
+        pokemonStatsGrid
+    ) {
+        const statLabels = {
+            hp: 'PS',
+            attack: 'Ataque',
+            defense: 'Defensa',
+            'special-attack': 'At. Esp.',
+            'special-defense': 'Def. Esp.',
+            speed: 'Velocidad'
+        };
+
+        const typeColors = {
+            normal: '#a8a77a',
+            fire: '#ee8130',
+            water: '#6390f0',
+            electric: '#f7d02c',
+            grass: '#7ac74c',
+            ice: '#96d9d6',
+            fighting: '#c22e28',
+            poison: '#a33ea1',
+            ground: '#e2bf65',
+            flying: '#a98ff3',
+            psychic: '#f95587',
+            bug: '#a6b91a',
+            rock: '#b6a136',
+            ghost: '#735797',
+            dragon: '#6f35fc',
+            dark: '#705746',
+            steel: '#b7b7ce',
+            fairy: '#d685ad'
+        };
+
+        const formatLabel = (value) => value
+            .split('-')
+            .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(' ');
+
+        const setFeedback = (message, state = '') => {
+            pokemonSearchFeedback.textContent = message;
+            pokemonSearchFeedback.className = 'pokemon-search-feedback';
+
+            if (state) {
+                pokemonSearchFeedback.classList.add(`is-${state}`);
+            }
+        };
+
+        const resetResult = () => {
+            pokemonResultCard.hidden = true;
+            pokemonResultTypes.innerHTML = '';
+            pokemonResultAbilities.innerHTML = '';
+            pokemonStatsGrid.innerHTML = '';
+        };
+
+        const renderPokemon = (pokemon) => {
+            const artwork = pokemon.sprites?.official_artwork || pokemon.sprites?.front;
+
+            pokemonResultCard.hidden = false;
+            pokemonResultImage.src = artwork || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+            pokemonResultImage.alt = `Imagen de ${pokemon.name}`;
+            pokemonResultId.textContent = `#${String(pokemon.id).padStart(3, '0')}`;
+            pokemonResultName.textContent = formatLabel(pokemon.name);
+
+            pokemonResultTypes.innerHTML = pokemon.types
+                .map((type) => {
+                    const color = typeColors[type] || '#666';
+                    return `<span class="pokemon-type-badge" style="background:${color}">${formatLabel(type)}</span>`;
+                })
+                .join('');
+
+            pokemonResultAbilities.innerHTML = pokemon.abilities
+                .map((ability) => {
+                    const suffix = ability.is_hidden ? ' (Oculta)' : '';
+                    return `<li>${formatLabel(ability.name)}${suffix}</li>`;
+                })
+                .join('');
+
+            pokemonStatsGrid.innerHTML = pokemon.stats
+                .map((stat) => `
+                    <div class="pokemon-stat">
+                        <span class="pokemon-stat-label">${statLabels[stat.name] || formatLabel(stat.name)}</span>
+                        <span class="pokemon-stat-value">${stat.base_stat}</span>
+                    </div>
+                `)
+                .join('');
+        };
+
+        pokemonSearchForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const searchValue = pokemonSearchInput.value.trim().toLowerCase();
+            if (!searchValue) {
+                setFeedback('Escribe un Pokemon para hacer la prueba.', 'error');
+                resetResult();
+                return;
+            }
+
+            setFeedback('Buscando datos en el backend...', 'success');
+            pokemonSearchForm.querySelector('button[type="submit"]').disabled = true;
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/pokemon/${encodeURIComponent(searchValue)}`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'No se pudo obtener el Pokemon');
+                }
+
+                renderPokemon(data);
+                setFeedback(`Resultado cargado para ${formatLabel(data.name)}.`, 'success');
+            } catch (error) {
+                resetResult();
+                setFeedback(error.message || 'Ha ocurrido un error al consultar el backend.', 'error');
+            } finally {
+                pokemonSearchForm.querySelector('button[type="submit"]').disabled = false;
+            }
+        });
     }
 });

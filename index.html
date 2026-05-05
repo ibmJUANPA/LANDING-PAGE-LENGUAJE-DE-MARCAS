@@ -233,6 +233,58 @@
                 <button type="button" class="carousel-button carousel-button-next" id="archetypes-next" aria-label="Siguiente arquetipo">›</button>
             </div>
         </section>
+
+        <section class="pokemon-search-section" aria-labelledby="pokemon-search-title">
+            <p class="eyebrow">PRUEBA DEL BACKEND</p>
+            <h2 class="section-title" id="pokemon-search-title">Buscador de Pokemon</h2>
+            <div class="section-divider" aria-hidden="true"></div>
+
+            <div class="pokemon-search-shell">
+                <form class="pokemon-search-form" id="pokemon-search-form">
+                    <label class="pokemon-search-label" for="pokemon-name">Nombre o numero del Pokemon</label>
+                    <div class="pokemon-search-controls">
+                        <input
+                            type="text"
+                            id="pokemon-name"
+                            class="pokemon-search-input"
+                            name="pokemon"
+                            placeholder="Ejemplo: pikachu, garchomp, 25"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="pokemon-search-button">Buscar</button>
+                    </div>
+                    <p class="pokemon-search-hint">Se mostraran tipo, habilidad y estadisticas base.</p>
+                </form>
+
+                <div class="pokemon-search-feedback" id="pokemon-search-feedback" aria-live="polite"></div>
+
+                <article class="pokemon-result-card" id="pokemon-result-card" hidden>
+                    <div class="pokemon-result-header">
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                            alt=""
+                            class="pokemon-result-image"
+                            id="pokemon-result-image"
+                        >
+                        <div class="pokemon-result-summary">
+                            <p class="card-tag" id="pokemon-result-id">#000</p>
+                            <h3 class="pokemon-result-name" id="pokemon-result-name">Pokemon</h3>
+                            <div class="pokemon-result-types" id="pokemon-result-types"></div>
+                            <div class="pokemon-result-abilities">
+                                <h4>Habilidades</h4>
+                                <ul id="pokemon-result-abilities"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pokemon-result-stats">
+                        <h4>Estadisticas base</h4>
+                        <div class="pokemon-stats-grid" id="pokemon-stats-grid"></div>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
 
     <div class="role-modal" id="role-modal" aria-hidden="true">
