@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pokemonStatsGrid = document.getElementById('pokemon-stats-grid');
     let closeModalTimer = null;
     let curtainProgress = 0;
+    let hasAutoScrolledToPokemonResult = false;
 
     if (!curtain || !leftCurtain || !rightCurtain || !curtainText) {
         return;
@@ -306,6 +307,26 @@ document.addEventListener('DOMContentLoaded', () => {
             .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
             .join(' ');
 
+        const getStatColor = (value) => {
+            if (value >= 150) {
+                return '#21c7c7';
+            }
+
+            if (value >= 120) {
+                return '#27c93f';
+            }
+
+            if (value >= 90) {
+                return '#ffd232';
+            }
+
+            if (value >= 60) {
+                return '#ff8c32';
+            }
+
+            return '#ee3b2f';
+        };
+
         const setFeedback = (message, state = '') => {
             pokemonSearchFeedback.textContent = message;
             pokemonSearchFeedback.className = 'pokemon-search-feedback';
@@ -316,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const resetResult = () => {
+            pokemonResultCard.classList.remove('is-visible');
             pokemonResultCard.hidden = true;
             pokemonResultTypes.innerHTML = '';
             pokemonResultAbilities.innerHTML = '';
@@ -325,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const renderPokemon = (pokemon) => {
             const artwork = pokemon.sprites?.official_artwork || pokemon.sprites?.front;
 
+            pokemonResultCard.classList.remove('is-visible');
             pokemonResultCard.hidden = false;
             pokemonResultImage.src = artwork || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
             pokemonResultImage.alt = `Imagen de ${pokemon.name}`;
@@ -346,13 +369,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 .join('');
 
             pokemonStatsGrid.innerHTML = pokemon.stats
-                .map((stat) => `
-                    <div class="pokemon-stat">
-                        <span class="pokemon-stat-label">${statLabels[stat.name] || formatLabel(stat.name)}</span>
-                        <span class="pokemon-stat-value">${stat.base_stat}</span>
-                    </div>
-                `)
+                .map((stat, index) => {
+                    const statValue = stat.base_stat;
+                    const statWidth = Math.min((statValue / 180) * 100, 100);
+                    const statColor = getStatColor(statValue);
+                    const statDelay = 90 + (index * 45);
+                    const normalizedStat = Math.min(statValue, 180) / 180;
+                    const statDuration = 0.55 + ((1 - normalizedStat) * 0.28);
+
+                    return `
+                        <div class="pokemon-stat">
+                            <span class="pokemon-stat-label">${statLabels[stat.name] || formatLabel(stat.name)}</span>
+                            <span class="pokemon-stat-value">${statValue}</span>
+                            <div class="pokemon-stat-bar-track" aria-hidden="true">
+                                <div
+                                    class="pokemon-stat-bar-fill"
+                                    style="--stat-width:${statWidth}%; --stat-color:${statColor}; --stat-delay:${statDelay}ms; --stat-duration:${statDuration.toFixed(2)}s;"
+                                ></div>
+                            </div>
+                        </div>
+                    `;
+                })
                 .join('');
+
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    pokemonResultCard.classList.add('is-visible');
+
+                    if (!hasAutoScrolledToPokemonResult) {
+                        pokemonResultCard.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        });
+                        hasAutoScrolledToPokemonResult = true;
+                    }
+                });
+            });
         };
 
         pokemonSearchForm.addEventListener('submit', async (event) => {

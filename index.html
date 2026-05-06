@@ -260,27 +260,37 @@
                 <div class="pokemon-search-feedback" id="pokemon-search-feedback" aria-live="polite"></div>
 
                 <article class="pokemon-result-card" id="pokemon-result-card" hidden>
-                    <div class="pokemon-result-header">
-                        <img
-                            src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
-                            alt=""
-                            class="pokemon-result-image"
-                            id="pokemon-result-image"
-                        >
+                    <div class="pokemon-result-layout">
+                        <div class="pokemon-result-visual">
+                            <img
+                                src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                                alt=""
+                                class="pokemon-result-image"
+                                id="pokemon-result-image"
+                            >
+                        </div>
+
                         <div class="pokemon-result-summary">
                             <p class="card-tag" id="pokemon-result-id">#000</p>
                             <h3 class="pokemon-result-name" id="pokemon-result-name">Pokemon</h3>
-                            <div class="pokemon-result-types" id="pokemon-result-types"></div>
-                            <div class="pokemon-result-abilities">
-                                <h4>Habilidades</h4>
-                                <ul id="pokemon-result-abilities"></ul>
+
+                            <div class="pokemon-data-list">
+                                <div class="pokemon-data-row">
+                                    <span class="pokemon-data-label">Tipo</span>
+                                    <div class="pokemon-result-types" id="pokemon-result-types"></div>
+                                </div>
+
+                                <div class="pokemon-data-row">
+                                    <span class="pokemon-data-label">Habilidad</span>
+                                    <ul class="pokemon-result-abilities" id="pokemon-result-abilities"></ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="pokemon-result-stats">
-                        <h4>Estadisticas base</h4>
-                        <div class="pokemon-stats-grid" id="pokemon-stats-grid"></div>
+                        <div class="pokemon-result-stats">
+                            <h4>Estadisticas base</h4>
+                            <div class="pokemon-stats-grid" id="pokemon-stats-grid"></div>
+                        </div>
                     </div>
                 </article>
             </div>
