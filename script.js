@@ -73,12 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCurtainProgress(event.deltaY);
     }, { passive: false });
 
+    let touchStartY = 0;
+    let touchLastY = 0;
+
+    window.addEventListener('touchstart', (event) => {
+        touchStartY = event.touches[0].clientY;
+        touchLastY = touchStartY;
+    }, { passive: true });
+
     window.addEventListener('touchmove', (event) => {
         if (curtainProgress === 1) {
             return;
         }
 
         event.preventDefault();
+
+        const currentY = event.touches[0].clientY;
+        const deltaY = touchLastY - currentY;
+        touchLastY = currentY;
+
+        updateCurtainProgress(deltaY * 1.4);
     }, { passive: false });
 
     window.addEventListener('keydown', (event) => {
@@ -438,4 +452,81 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ─── NAVBAR ───────────────────────────────────────────────────────────────
+    const siteNav = document.getElementById('site-nav');
+    const navLinks = document.querySelectorAll('.site-nav-link');
+    const heroSection = document.getElementById('section-basics');
+    const navLinksList = siteNav?.querySelector('.site-nav-links');
+
+    // Crear botón hamburguesa dinámicamente
+    const navToggle = document.createElement('button');
+    navToggle.className = 'site-nav-toggle';
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = '<span></span><span></span><span></span>';
+    siteNav?.querySelector('.site-nav-inner')?.appendChild(navToggle);
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navLinksList.classList.toggle('is-open');
+        navToggle.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Mostrar navbar cuando el usuario pasa la primera sección
+    if (siteNav && heroSection) {
+        const navObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) {
+                    siteNav.classList.add('is-visible');
+                } else {
+                    siteNav.classList.remove('is-visible');
+                    navLinksList?.classList.remove('is-open');
+                    navToggle.classList.remove('is-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            },
+            { threshold: 0, rootMargin: '-60px 0px 0px 0px' }
+        );
+        navObserver.observe(heroSection);
+    }
+
+    // Marcar enlace activo según sección visible
+    const allSections = document.querySelectorAll('section[id]');
+    if (allSections.length > 0) {
+        const activeLinkObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach((link) => {
+                            link.classList.toggle(
+                                'is-active',
+                                link.dataset.navTarget === entry.target.id
+                            );
+                        });
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+        allSections.forEach((section) => activeLinkObserver.observe(section));
+    }
+
+    // Scroll suave al hacer clic
+    navLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const targetId = link.dataset.navTarget;
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+
+            navLinksList?.classList.remove('is-open');
+            navToggle.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+
+            const navHeight = siteNav?.offsetHeight ?? 0;
+            const targetTop = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 12;
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        });
+    });
 });
