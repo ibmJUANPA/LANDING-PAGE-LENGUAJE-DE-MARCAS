@@ -288,11 +288,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ) {
         const statLabels = {
             hp: 'PS',
-            attack: 'Ataque',
-            defense: 'Defensa',
-            'special-attack': 'At. Esp.',
-            'special-defense': 'Def. Esp.',
-            speed: 'Velocidad'
+            attack: 'ATQ',
+            defense: 'DEF',
+            'special-attack': 'A.ESP',
+            'special-defense': 'D.ESP',
+            speed: 'VEL'
         };
 
         const typeColors = {
@@ -471,6 +471,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = navLinksList.classList.toggle('is-open');
         navToggle.classList.toggle('is-open', isOpen);
         navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // ─── MODO OSCURO ──────────────────────────────────────────────────────────
+    const darkBtn = document.getElementById('nav-darkmode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+    const applyTheme = (dark) => {
+        body.classList.toggle('dark-mode', dark);
+        if (darkBtn) darkBtn.textContent = dark ? '☀️' : '🌙';
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    };
+
+    applyTheme(isDark);
+
+    darkBtn?.addEventListener('click', () => {
+        applyTheme(!body.classList.contains('dark-mode'));
     });
 
     // Mostrar navbar cuando el usuario pasa la primera sección
