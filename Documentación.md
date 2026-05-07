@@ -871,7 +871,7 @@ Este patrón mantiene la lógica de cálculo en JavaScript y la lógica de anima
 
 ---
 
-## 10. Responsividad
+## 10. Responsividad.
 
 ### 10.1. Descripción — qué hace
 
