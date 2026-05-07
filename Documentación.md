@@ -9,18 +9,17 @@
 - Node.js v18 o superior
 - npm
 
-### Pasos
+### Pasos (Desde la terminal de VSCode)
 
 ```bash
-# 1. Instalar las dependencias del backend
+# 1. Entramos en la carpeta del backend (Estando en la carpeta principal/raiz)
+cd backend 
+
+# 2. Instalar las dependencias del backend 
 npm install
 
-# 2. Arrancar el servidor
-npm start
-# → Servidor disponible en http://localhost:3000
-
-# Alternativa con recarga automática al guardar cambios
-npm run dev
+# 3. Arrancamos el servidor
+node server.js
 ```
 
 Con el servidor corriendo, abrir `index.html` directamente en el navegador o servirla con un servidor estático como Live Server de VS Code. El front-end se conecta automáticamente al backend en `http://localhost:3000`.
