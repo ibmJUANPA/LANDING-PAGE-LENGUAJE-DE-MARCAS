@@ -1352,3 +1352,214 @@ body.dark-mode .curtain-text p {
         line-height: 1.6;
     }
 }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+.site-footer {
+    position: relative;
+    z-index: 2;
+    background: var(--footer-bg);
+    border-top: 3px solid var(--footer-border);
+    transition: background 0.4s ease, border-color 0.4s ease;
+    margin-top: 80px;
+}
+
+:root {
+    --footer-bg: rgba(232, 238, 255, 0.97);
+    --footer-border: rgba(59, 76, 202, 0.2);
+    --footer-text: rgba(34, 34, 34, 0.65);
+    --footer-link: var(--poke-blue);
+    --footer-bottom-bg: rgba(59, 76, 202, 0.07);
+    --footer-pokeball-color: rgba(59, 76, 202, 0.12);
+    --footer-pokeball-line: rgba(59, 76, 202, 0.2);
+    --footer-pokeball-center: rgba(59, 76, 202, 0.15);
+}
+
+body.dark-mode {
+    --footer-bg: rgba(14, 14, 26, 0.98);
+    --footer-border: rgba(123, 143, 255, 0.25);
+    --footer-text: rgba(220, 220, 240, 0.55);
+    --footer-link: var(--poke-yellow);
+    --footer-bottom-bg: rgba(0, 0, 0, 0.2);
+    --footer-pokeball-color: rgba(123, 143, 255, 0.1);
+    --footer-pokeball-line: rgba(123, 143, 255, 0.2);
+    --footer-pokeball-center: rgba(123, 143, 255, 0.15);
+}
+
+.site-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 52px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 48px;
+    align-items: start;
+}
+
+/* Brand */
+.site-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.site-footer-logo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    color: var(--nav-logo-color);
+    transition: color 0.4s ease;
+}
+
+.site-footer-tagline {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--footer-text);
+    margin: 0;
+    max-width: 240px;
+    line-height: 1.5;
+}
+
+/* Nav links */
+.site-footer-nav ul {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.site-footer-nav-title {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--nav-logo-color);
+    margin: 0 0 4px;
+    letter-spacing: 0.08em;
+    transition: color 0.4s ease;
+}
+
+.site-footer-nav a {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--footer-text);
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+
+.site-footer-nav a:hover {
+    color: var(--footer-link);
+}
+
+/* Pokéball decorativa */
+.site-footer-pokeball {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0 0 16px;
+}
+
+.footer-pokeball-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid var(--footer-pokeball-line);
+    overflow: hidden;
+    transition: border-color 0.4s ease, transform 0.6s ease;
+}
+
+.footer-pokeball-icon:hover {
+    transform: rotate(180deg);
+}
+
+.fp-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: var(--poke-red);
+    opacity: 0.7;
+}
+
+.fp-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: var(--footer-pokeball-color);
+}
+
+.fp-middle {
+    position: absolute;
+    top: calc(50% - 4px);
+    left: 0; right: 0;
+    height: 8px;
+    background: var(--footer-pokeball-line);
+    z-index: 1;
+}
+
+.fp-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 4px solid var(--footer-pokeball-line);
+    background: var(--footer-pokeball-center);
+    z-index: 2;
+}
+
+/* Bottom bar */
+.site-footer-bottom {
+    background: var(--footer-bottom-bg);
+    border-top: 1px solid var(--footer-border);
+    padding: 16px 40px;
+    text-align: center;
+    transition: background 0.4s ease;
+}
+
+.site-footer-bottom p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--footer-text);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.site-footer-bottom a {
+    color: var(--footer-link);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* Footer responsive */
+@media (max-width: 768px) {
+    .site-footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding: 36px 24px 28px;
+    }
+
+    .site-footer-pokeball {
+        display: none;
+    }
+
+    .site-footer-bottom {
+        padding: 14px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 32px 20px 24px;
+    }
+
+    .site-footer-tagline {
+        max-width: 100%;
+    }
+}

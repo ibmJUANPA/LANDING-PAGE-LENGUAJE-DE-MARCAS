@@ -530,11 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
         allSections.forEach((section) => activeLinkObserver.observe(section));
     }
 
-    // Scroll suave al hacer clic
-    navLinks.forEach((link) => {
+    // Scroll suave al hacer clic en navbar y footer
+    const allNavLinks = document.querySelectorAll('.site-nav-link, .site-footer-nav a[href^="#"]');
+    allNavLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
-            const targetId = link.dataset.navTarget;
+            const targetId = link.dataset.navTarget || link.getAttribute('href')?.replace('#', '');
             const targetEl = document.getElementById(targetId);
             if (!targetEl) return;
 
